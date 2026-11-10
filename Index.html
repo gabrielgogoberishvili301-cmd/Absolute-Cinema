@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolute Cinema - ფილმები ქართული გახმოვანებით</title>
+    <style>
+        body {
+            background-color: #141414;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e50914;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e50914;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px 25px 20px;
+        }
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .hero p {
+            font-size: 16px;
+            color: #b3b3b3;
+            margin-bottom: 25px;
+        }
+
+        /* Netflix Style Search Bar */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 10px auto;
+        }
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            outline: none;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .search-input:focus {
+            border-color: #e50914;
+            background-color: #000;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border-left: 4px solid #e50914;
+            padding-left: 10px;
+        }
+
+        /* Netflix Grid & Cards */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 20px;
+        }
+        .movie-card {
+            background-color: #1f1f1f;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 280px;
+            position: relative;
+            border: 1px solid #2a2a2a;
+        }
+        .movie-card:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4);
+            z-index: 10;
+            border-color: #e50914;
+        }
+        
+        .movie-art {
+            flex-grow: 1;
+            background: linear-gradient(135deg, #1f1f1f 0%, #2b0e0e 50%, #141414 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .movie-art::after {
+            content: "▶";
+            position: absolute;
+            font-size: 32px;
+            color: rgba(229, 9, 20, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: scale(0.6);
+        }
+        .movie-card:hover .movie-art::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .art-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            line-height: 1.3;
+        }
+
+        .movie-info {
+            padding: 14px;
+            background-color: #181818;
+            border-top: 1px solid #282828;
+        }
+        .movie-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #e5e5e5;
+        }
+        .movie-dub {
+            font-size: 11px;
+            color: #e50914;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">AbsoluteCinema.ge</a>
+        <div style="font-size: 14px; font-weight: 600; color: #b3b3b3;">MikaDra Dub</div>
+    </header>
+
+    <div class="hero">
+        <h1>Absolute Cinema</h1>
+        <p>საუკეთესო ფილმები და სერიალები ექსკლუზიურად ქართული გახმოვანებით</p>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search movies..." onkeyup="filterMovies()">
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">All Movies (50)</h2>
+        
+        <div class="movies-grid" id="moviesGrid">
+            <!-- 50 ფილმი ორიგინალური ინგლისური სახელებით -->
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream</div></div><div class="movie-info"><div class="movie-title">Scream</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream 2</div></div><div class="movie-info"><div class="movie-title">Scream 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream 3</div></div><div class="movie-info"><div class="movie-title">Scream 3</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream 4</div></div><div class="movie-info"><div class="movie-title">Scream 4</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream 5</div></div><div class="movie-info"><div class="movie-title">Scream 5</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream 6</div></div><div class="movie-info"><div class="movie-title">Scream 6</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scream 7</div></div><div class="movie-info"><div class="movie-title">Scream 7</div><div class="movie-dub">MikaDra Dub</div></div></a>
+
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man</div></div><div class="movie-info"><div class="movie-title">Spider-Man</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man 2</div></div><div class="movie-info"><div class="movie-title">Spider-Man 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man 3</div></div><div class="movie-info"><div class="movie-title">Spider-Man 3</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">The Amazing Spider-Man</div></div><div class="movie-info"><div class="movie-title">The Amazing Spider-Man</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">The Amazing Spider-Man 2</div></div><div class="movie-info"><div class="movie-title">The Amazing Spider-Man 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man: Homecoming</div></div><div class="movie-info"><div class="movie-title">Spider-Man: Homecoming</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man: Far From Home</div></div><div class="movie-info"><div class="movie-title">Spider-Man: Far From Home</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man: No Way Home</div></div><div class="movie-info"><div class="movie-title">Spider-Man: No Way Home</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man: Into the Spider-Verse</div></div><div class="movie-info"><div class="movie-title">Spider-Man: Into the Spider-Verse</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Spider-Man: Across the Spider-Verse</div></div><div class="movie-info"><div class="movie-title">Spider-Man: Across the Spider-Verse</div><div class="movie-dub">MikaDra Dub</div></div></a>
+
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Avengers: Infinity War</div></div><div class="movie-info"><div class="movie-title">Avengers: Infinity War</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">The Avengers</div></div><div class="movie-info"><div class="movie-title">The Avengers</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Iron Man</div></div><div class="movie-info"><div class="movie-title">Iron Man</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Iron Man 2</div></div><div class="movie-info"><div class="movie-title">Iron Man 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Captain America: The First Avenger</div></div><div class="movie-info"><div class="movie-title">Captain America: The First Avenger</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">The Incredible Hulk</div></div><div class="movie-info"><div class="movie-title">The Incredible Hulk</div><div class="movie-dub">MikaDra Dub</div></div></a>
+
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Halloween Kills</div></div><div class="movie-info"><div class="movie-title">Halloween Kills</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Halloween Ends</div></div><div class="movie-info"><div class="movie-title">Halloween Ends</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">A Nightmare on Elm Street</div></div><div class="movie-info"><div class="movie-title">A Nightmare on Elm Street</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scary Movie</div></div><div class="movie-info"><div class="movie-title">Scary Movie</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Scary Movie 2</div></div><div class="movie-info"><div class="movie-title">Scary Movie 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Insidious</div></div><div class="movie-info"><div class="movie-title">Insidious</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Insidious: Chapter 2</div></div><div class="movie-info"><div class="movie-title">Insidious: Chapter 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Resident Evil</div></div><div class="movie-info"><div class="movie-title">Resident Evil</div><div class="movie-dub">MikaDra Dub</div></div></a>
+
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Fight Club</div></div><div class="movie-info"><div class="movie-title">Fight Club</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Whiplash</div></div><div class="movie-info"><div class="movie-title">Whiplash</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Batman v Superman</div></div><div class="movie-info"><div class="movie-title">Batman v Superman</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Man of Steel</div></div><div class="movie-info"><div class="movie-title">Man of Steel</div><div class="movie-dub">MikaDra Dub</div></div></a>
+
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 1</div></div><div class="movie-info"><div class="movie-title">Harry Potter 1</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 2</div></div><div class="movie-info"><div class="movie-title">Harry Potter 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 3</div></div><div class="movie-info"><div class="movie-title">Harry Potter 3</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 4</div></div><div class="movie-info"><div class="movie-title">Harry Potter 4</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 5</div></div><div class="movie-info"><div class="movie-title">Harry Potter 5</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 6</div></div><div class="movie-info"><div class="movie-title">Harry Potter 6</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 7</div></div><div class="movie-info"><div class="movie-title">Harry Potter 7</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Harry Potter 8</div></div><div class="movie-info"><div class="movie-title">Harry Potter 8</div><div class="movie-dub">MikaDra Dub</div></div></a>
+
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">The Grinch</div></div><div class="movie-info"><div class="movie-title">The Grinch</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">How the Grinch Stole Christmas</div></div><div class="movie-info"><div class="movie-title">How the Grinch Stole Christmas</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Home Alone</div></div><div class="movie-info"><div class="movie-title">Home Alone</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Home Alone 2</div></div><div class="movie-info"><div class="movie-title">Home Alone 2</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Coraline</div></div><div class="movie-info"><div class="movie-title">Coraline</div><div class="movie-dub">MikaDra Dub</div></div></a>
+            <a href="watch.html" class="movie-card"><div class="movie-art"><div class="art-title">Tom and Jerry: The Movie</div></div><div class="movie-info"><div class="movie-title">Tom and Jerry: The Movie</div><div class="movie-dub">MikaDra Dub</div></div></a>
+        </div>
+    </div>
+
+    <script>
+        function filterMovies() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('movie-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByClassName('movie-title')[0].innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
